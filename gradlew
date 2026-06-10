@@ -156,10 +156,13 @@ if "$cygwin" || "$msys" ; then
     done
 fi
 
-# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+# Collect all arguments for the java command; stacking them in reverse order
+# so that the 'eval set --' trick correctly passes them to the JVM.
 # shellcheck disable=SC2086
-exec "$JAVACMD" $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS \
-  "-Dorg.gradle.appname=$APP_BASE_NAME" \
-  -classpath "$CLASSPATH" \
+eval set -- $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS \
+  '"-Dorg.gradle.appname=$APP_BASE_NAME"' \
+  -classpath '"$CLASSPATH"' \
   org.gradle.wrapper.GradleWrapperMain \
-  "$@"
+  '"$@"'
+
+exec "$JAVACMD" "$@"
